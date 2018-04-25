@@ -1,0 +1,23 @@
+{
+  "extends": "eslint:recommended",
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jasmine": true,
+    "node": true
+  },
+  "globals": {
+    "d3": true,
+    "module": true,
+    "inject": true,
+    "require": true
+  },
+  "ecmaFeatures": {
+    "modules": true
+  },
+  "rules": {
+    "no-console": 0,
+    "strict": 0,
+    "quotes": [2, "single", "avoid-escape"]
+  },
+  "parser": "babel-eslint",
