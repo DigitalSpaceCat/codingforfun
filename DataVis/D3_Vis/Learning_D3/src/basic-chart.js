@@ -1,9 +1,3 @@
-/**
- * class BasicChart
- * Simple class for scaffolding D3 charts
- * @chapter 1
- */
-
 export class BasicChart {
   /**
    * Instantiates the class.
@@ -12,9 +6,9 @@ export class BasicChart {
    */
   constructor(data) {
     var d3 = require('d3'); // Require D3 via Webpack
-
     this.data = data;
-    this.svg = d3.select('div#chart').append('svg');
+    //chart 2 append spot
+    this.svg = d3.select('div#chart2').append('svg');
 
     this.margin = {
       left: 20,

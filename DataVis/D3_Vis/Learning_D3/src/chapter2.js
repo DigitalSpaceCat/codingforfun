@@ -1,17 +1,9 @@
-/**
- * Examples from Chapter 2
- */
-
-import {TableBuilder} from './table-builder';
+import TableBuilder from './table-builder';
 import {BasicChart} from './basic-chart';
 
 let d3 = require('d3');
 
-/**
- * Creates a colour wheel.
- * @return {void}
- */
-export function colorScale() {
+export default function() {
   let chart = new BasicChart();
   let svg = chart.chart;
 
@@ -47,19 +39,21 @@ export function colorScale() {
     .attr('d', arc)
     .attr('fill', (d, i, j) => conf[2](d, j));
   });
+
 }
 
-/**
- * Creates a list of all of D3's axes.
- */
 export function axisDemo(){
   let chart = new BasicChart();
   let svg = chart.chart;
-  require('./index.css');
+  require('./chapter2.css');
 
   let x = d3.scale.linear()
     .domain([0, 100])
     .range([chart.margin.left, chart.width - chart.margin.right]);
+
+
+  let axis = d3.svg.axis()
+    .scale(x);
 
   let axes = [
     d3.svg.axis().scale(x),
@@ -70,7 +64,7 @@ export function axisDemo(){
   ];
 
   axes.forEach(function (axis, i) {
-    svg.append('g')
+    let a = svg.append('g')
     .classed('axis', true)
     .classed('red', i%2 == 0)
     .attr('transform', `translate(0, ${i*50+(chart.margin.top)})`)
@@ -79,9 +73,6 @@ export function axisDemo(){
   });
 }
 
-/**
- * Creates a demo showing all of D3's path generators.
- */
 export function FunkyD3PathGenerators() {
   let chart = new BasicChart();
   let svg = chart.chart;
@@ -224,9 +215,6 @@ export function FunkyD3PathGenerators() {
 
 }
 
-/**
- * Creates a weird drawing using SVG.
- */
 export function myWeirdSVGDrawing() {
   let svg = new BasicChart().svg;
 
@@ -274,13 +262,9 @@ export function myWeirdSVGDrawing() {
   });
 }
 
-/**
- * Render a table of all Daily Show guests.
- * @return {TableBuilder} New instance of the class loaded with the guest list.
- */
 export function renderDailyShowGuestTable() {
   let url =
       'https://cdn.rawgit.com/fivethirtyeight/data/master/daily-show-guests/daily_show_guests.csv';
 
-  return new TableBuilder(url);
+  let table = new TableBuilder(url);
 }
